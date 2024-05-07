@@ -25,3 +25,5 @@ Route.get("/", async () => {
 });
 
 Route.resource("/categories", "CategoriesController");
+
+Route.resource("/users", "UsersController");
