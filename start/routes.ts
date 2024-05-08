@@ -60,3 +60,5 @@ Route.post("/logout", async ({ auth }) => {
 Route.resource("/users", "UsersController");
 
 Route.resource("/categories", "CategoriesController");
+
+Route.resource("/suppliers", "SuppliersController");
