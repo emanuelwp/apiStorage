@@ -12,7 +12,10 @@ export default class Category extends BaseModel {
   @column()
   public description: string;
 
-  @hasMany(() => Product)
+  @hasMany(() => Product, {
+    localKey: "id",
+    foreignKey: "productId",
+  })
   public products: HasMany<typeof Product>;
 
   @column.dateTime({ autoCreate: true })
