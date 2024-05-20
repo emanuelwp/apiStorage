@@ -43,3 +43,23 @@ Route.group(() => {
 })
   .middleware("auth:api")
   .prefix("suppliers");
+
+//Products routes
+Route.group(() => {
+  Route.get("/", "ProductsController.index");
+  Route.get("/:id", "ProductsController.show");
+  Route.post("/", "ProductsController.store");
+  Route.put("/:id", "ProductsController.update");
+  Route.delete("/:id", "ProductsController.destroy");
+})
+  .middleware("auth:api")
+  .prefix("products");
+
+//Movements routes
+Route.group(() => {
+  Route.get("/", "MovementsController.index");
+  Route.get("/:id", "MovementsController.show");
+  Route.post("/", "MovementsController.store");
+})
+  .middleware("auth:api")
+  .prefix("movements");

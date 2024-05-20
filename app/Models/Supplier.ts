@@ -1,5 +1,6 @@
 import { DateTime } from "luxon";
-import { BaseModel, column } from "@ioc:Adonis/Lucid/Orm";
+import { BaseModel, HasMany, column, hasMany } from "@ioc:Adonis/Lucid/Orm";
+import Movement from "./Movement";
 
 export default class Supplier extends BaseModel {
   @column({ isPrimary: true })
@@ -16,6 +17,12 @@ export default class Supplier extends BaseModel {
 
   @column()
   public cep: string;
+
+  @hasMany(() => Movement, {
+    localKey: "id",
+    foreignKey: "movementId",
+  })
+  public movements: HasMany<typeof Movement>;
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
