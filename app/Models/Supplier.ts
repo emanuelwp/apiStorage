@@ -18,7 +18,10 @@ export default class Supplier extends BaseModel {
   @column()
   public cep: string;
 
-  @hasMany(() => Movement)
+  @hasMany(() => Movement, {
+    localKey: "id",
+    foreignKey: "movementId",
+  })
   public movements: HasMany<typeof Movement>;
 
   @column.dateTime({ autoCreate: true })
