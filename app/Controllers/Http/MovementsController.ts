@@ -38,7 +38,7 @@ export default class MovementsController {
     }
 
     const date = DateTime.now();
-    const dateFormatted = date.toFormat("dd/MM/yyyy HH:mm:ss");
+    const dateFormatted = date.toFormat("yyyy/MM/dd HH:mm:ss");
 
     const movement = await Movement.create({
       movementQuantity: body.movementQuantity,
