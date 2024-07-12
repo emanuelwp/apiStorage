@@ -46,6 +46,7 @@ Route.group(() => {
 
 //Products routes
 Route.group(() => {
+  Route.get("/dashboard", "ProductsController.dashboard");
   Route.get("/", "ProductsController.index");
   Route.get("/:id", "ProductsController.show");
   Route.post("/", "ProductsController.store");

@@ -12,11 +12,17 @@ import Category from "./Category";
 import Movement from "./Movement";
 
 export default class Product extends BaseModel {
+  length() {
+    throw new Error("Method not implemented.");
+  }
   @column({ isPrimary: true })
   public id: number;
 
   @column()
   public name: string;
+
+  @column()
+  public quantity: number;
 
   @column()
   public stockQuantity: number;
