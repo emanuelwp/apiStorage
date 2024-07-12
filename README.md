@@ -14,4 +14,4 @@ O repositório em questão é apenas a API do sistema, ou seja, o "backend" por 
 
 POR IMPLEMENTAR:
 
-- [] Lógica para salvar a imagem no banco de dados.
+- ⚠️ Lógica para salvar a imagem no banco de dados.
