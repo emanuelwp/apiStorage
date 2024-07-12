@@ -10,3 +10,8 @@ O repositório em questão é apenas a API do sistema, ou seja, o "backend" por 
 ---
 
 🚧 Em construção...
+
+
+POR IMPLEMENTAR:
+
+- [] Lógica para salvar a imagem no banco de dados.
