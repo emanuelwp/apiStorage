@@ -20,20 +20,32 @@ export default class MovementsController {
     if (movementType?.name === "Entrada") {
       const product = await Product.findOrFail(body.productId);
       product.stockQuantity = product.stockQuantity + movementQuantity;
+      product.quantity = product.stockQuantity + product.showcaseQuantity;
       product.save();
     } else if (movementType?.name === "Transferência") {
       const product = await Product.findOrFail(body.productId);
-      product.stockQuantity = product.stockQuantity - movementQuantity;
-      product.showcaseQuantity = product.showcaseQuantity + movementQuantity;
-      product.save();
+      if (product.stockQuantity < movementQuantity) {
+        throw new Error("Quantia insuficiente em estoque");
+      } else {
+        product.stockQuantity = product.stockQuantity - movementQuantity;
+        product.showcaseQuantity = product.showcaseQuantity + movementQuantity;
+        product.quantity = product.stockQuantity + product.showcaseQuantity;
+        product.save();
+      }
     } else if (movementType?.name === "Saída") {
       const product = await Product.findOrFail(body.productId);
-      product.showcaseQuantity = product.showcaseQuantity - movementQuantity;
-      product.save();
+      if (product.showcaseQuantity < movementQuantity) {
+        throw new Error("Quantia insuficiente em vitrine");
+      } else {
+        product.showcaseQuantity = product.showcaseQuantity - movementQuantity;
+        product.quantity = product.stockQuantity + product.showcaseQuantity;
+        product.save();
+      }
     } else if (movementType?.name === "Descarte") {
       const product = await Product.findOrFail(body.productId);
       product.stockQuantity = 0;
       product.showcaseQuantity = 0;
+      product.quantity = product.stockQuantity + product.showcaseQuantity;
       product.save();
     }
 
