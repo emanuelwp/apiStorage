@@ -29,9 +29,7 @@ Route.group(() => {
   Route.post("/", "CategoriesController.store");
   Route.put("/:id", "CategoriesController.update");
   Route.delete("/:id", "CategoriesController.destroy");
-})
-  .middleware("auth:api")
-  .prefix("categories");
+}).prefix("categories");
 
 //Suppliers routes
 Route.group(() => {
@@ -52,9 +50,7 @@ Route.group(() => {
   Route.post("/", "ProductsController.store");
   Route.put("/:id", "ProductsController.update");
   Route.delete("/:id", "ProductsController.destroy");
-})
-  .middleware("auth:api")
-  .prefix("products");
+}).prefix("products");
 
 //Movements routes
 Route.group(() => {
