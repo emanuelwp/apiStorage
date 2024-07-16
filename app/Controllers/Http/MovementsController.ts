@@ -5,8 +5,15 @@ import Product from "App/Models/Product";
 import { DateTime } from "luxon";
 
 export default class MovementsController {
-  public async index({}: HttpContextContract) {
-    const movements = await Movement.all();
+  public async index({ request }: HttpContextContract) {
+    const type = request.input("type", null);
+
+    const movements = await Movement.query()
+      .if(type, (query) => query.where("movement_type_id", type))
+      .preload("product")
+      .preload("user")
+      .if(type === "1", (query) => query.preload("supplier"));
+
     return movements;
   }
 
